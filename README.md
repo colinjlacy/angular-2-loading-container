@@ -4,19 +4,19 @@ This is meant to be a super-simple Angualr 2 component, used in tandem with `ngS
 
 ## To Use:
 
-Pull `loading-indicator.ts` into your project, generally in a widely accessible place, where it can be referenced by other classes.  Pull `loading-indicator.scss` into your Sass directory.  
+Pull `loading-container.ts` into your project, generally in a widely accessible place, where it can be referenced by other classes.  Pull `loading-container.scss` into your Sass directory.  
 
-In your target class, reference the two classes in `loading-indicator.ts`.  One is a directive, while the other is a base class that your component should extend:
+In your target class, reference the two classes in `loading-container.ts`.  One is a directive, while the other is a base class that your component should extend:
 
 	import {Component, OnInit} from 'angular/core';
 	import {DataService} from '../../data/data.service';
-	import {LoadingIndicator, LoadingPage} from '../../components/loading-indicator';
+	import {LoadingContainer, LoadingPage} from '../../components/loading-container';
 	
 	@Component({
 		selector: 'some-component',
 	    templateUrl: 'some/page.html',
 	    providers: [DataService],
-	    directives: [LoadingIndicator]
+	    directives: [LoadingContainer]
 	})
 	export class LoginPage extends LoadingPage {
 		public asyncData;
@@ -36,18 +36,9 @@ In your target class, reference the two classes in `loading-indicator.ts`.  One 
 In the template where you'll use this class, add an `*ngSwitch` to toggle the active view:
 
 	<ion-content class="login">
-		<div [ngSwitch]="loading">
-			<div *ngSwitchWhen="false">
-				<ul>
-					<div *ngFor='#item in asyncData.items'>
-						<li>{{item}}</li>
-					</div>
-				</ul>
-			</div>
-			<div *ngSwitchWhen="true">
-				<loading-indicator></loading-indicator>
-			</div>
-		</div>
+		<loading-container [loading]="loading">
+			<login-form></login-form>
+		</loading-container>
 	</ion-content>
 
 In this case, the `ngSwitch` blocks the `ngFor` repeater from loading into the DOM; had it been loaded, Angular would have thrown an error, as it wouldn't be able to find property `items` of *undefined*.
