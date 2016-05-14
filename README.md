@@ -1,6 +1,6 @@
-# Loading Indicator
+# Loading Container
 
-This is meant to be a super-simple Angualr 2 component, used in tandem with `ngSwitch` to block DOM elements while waiting for async data.
+This is meant to be a super-simple Angualr 2 component, which sets a spinner ased on a boolean input, and passes an encapsulated view to the DOM when that boolean evaluates to false.
 
 ## To Use:
 
@@ -13,13 +13,13 @@ In your target class, reference the two classes in `loading-container.ts`.  One 
 	import {LoadingContainer, LoadingPage} from '../../components/loading-container';
 	
 	@Component({
-		selector: 'some-component',
+	    selector: 'some-component',
 	    templateUrl: 'some/page.html',
 	    providers: [DataService],
 	    directives: [LoadingContainer]
 	})
 	export class LoginPage extends LoadingPage {
-		public asyncData;
+	    public asyncData;
 	
 	    constructor(private _data: DataService) {
 	        super(true); // sets loading to true
