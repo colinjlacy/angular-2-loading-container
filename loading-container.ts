@@ -1,8 +1,8 @@
 /**
  * Created by colinjlacy on 4/25/16.
  */
-import {Component, Input} from 'angular2/core';
-import {NgSwitch, NgSwitchCase} from 'angular2/common';
+import {Component, Input} from '@angular/core';
+import {NgSwitch, NgSwitchCase} from '@angular2/common';
 
 @Component({
     selector: 'loading-container',
